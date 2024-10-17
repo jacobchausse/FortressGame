@@ -94,16 +94,16 @@ def display(Board_pieces, Board_power, Power_pieces):
 def save(Board_pieces, Board_power, Power_pieces, Player_turn):
     
     date = datetime.now()
-    date_time = 'saves\\fortressSAVE_' + date.strftime("%m.%d.%Y_%H.%M.%S")
+    date_time = os.path.dirname(os.path.abspath(__file__)) + '\\saves\\fortressSAVE_' + date.strftime("%m.%d.%Y_%H.%M.%S")
     
-    filedata = np.array([Board_pieces, Board_power, Power_pieces, Player_turn])
- 
-    np.save(date_time, filedata)
+    filedata = np.array([Board_pieces, Board_power, Power_pieces, Player_turn], dtype=object)
+    
+    np.savez(date_time, filedata)
     
     
 def load():
 
-    saves = os.listdir('saves\\')
+    saves = os.listdir(os.path.dirname(os.path.abspath(__file__)) + '\\saves\\')
     
     if len(saves) == 0:
         return(False)
@@ -121,4 +121,4 @@ def load():
     elif not(int(saveChoice) <= len(saves) and int(saveChoice) > 0):
             return('\nInput is not in the list of saves.\n')
   
-    return(np.load('saves\\' + saves[int(saveChoice)-1], allow_pickle=True))
+    return(np.load(os.path.dirname(os.path.abspath(__file__)) + '\\saves\\' + saves[int(saveChoice)-1], allow_pickle=True))

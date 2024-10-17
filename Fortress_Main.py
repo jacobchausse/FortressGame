@@ -64,7 +64,7 @@ if Load == 'L': #if user chose to load a game
         BoardDisp.display(Board_pieces, Board_power, Player_powerpieces)
     
     else:
-        print('\nNo saves avilable! Will now start a new game.\n')
+        print('\nNo saves available! Will now start a new game.\n')
     
     
 if Load == 'N' or type(saveData) == bool:
